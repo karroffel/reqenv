@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: reqenv
+Upstream-Contact: Thomas Herzog <thomas-code@poto.cafe>
+Source: https://code.poto.cafe/karroffel/reqenv
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...

@@ -1,0 +1,17 @@
+// SPDX-FileCopyrightText: Thomas Herzog
+//
+// SPDX-License-Identifier: CC0-1.0
+
+/* Allow members of the wheel group to manage unit files without
+ * password authentication.
+ * This is needed so that `reqenv` does not always prompt for a
+ * password.
+ */
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.systemd1.manage-units" ||
+	 action.id == "org.freedesktop.systemd1.manage-unit-files") &&
+        subject.isInGroup("wheel"))
+    {
+        return polkit.Result.YES;
+    }
+});
