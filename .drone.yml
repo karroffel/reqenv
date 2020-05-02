@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: Thomas Herzog
+# SPDX-License-Identifier: CC0-1.0
+
+kind: pipeline
+name: checks
+
+steps:
+- name: license
+  image: fsfe/reuse
+  commands:
+  - reuse lint
+
+- name: fmt
+  image: rust:1.43
+  commands:
+  - rustup component add rustfmt
+  - cargo fmt --all -- --check
+
+- name: clippy
+  image: rust:1.43
+  commands:
+  - rustup component add clippy
+  - cargo clippy --all-targets --all-features -- -D warnings
+
+#- name: test
+#  image: rust:1.43
+#  commands:
+#  - cargo clippy --all
