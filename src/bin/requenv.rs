@@ -98,10 +98,6 @@ fn main() {
 		usage_exit("<<command>>", matches)
 	};
 	
-	if cpus.is_none() && cpu_speed.is_none() && memory.is_none() {
-		todo!("loading from a config file is not yet supported")
-	}
-	
 	let options = Options {
 		cpus,
 		cpu_speed,

@@ -14,4 +14,4 @@ license = "OSL-3.0"
 [dependencies]
 clap = "2.0.0"
 num_cpus = "1.0"
-contracts = "0.3.0"
+contracts = "0.4.0"

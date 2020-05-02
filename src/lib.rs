@@ -64,13 +64,13 @@ pub struct Command {
 #[pre(opts.invariant())]
 #[pre(!command.is_empty(), "must provide a command to execute")]
 #[post(ret.arguments.ends_with(command), "command must be preserved")]
-// #[post(opts.cpus.is_some() ==> ret.arguments.contains("taskset"))]
-// #[post(opts.cpus.or(opts.cpu_speed).is_some()
-// 	==> ret.arguments.first(|e| e.starts_with("CPUQuota")).is_some()
-// )]
-// #[post(opts.memory.is_some()
-// 	==> ret.arguments.first(|e| e.starts_with("MemoryMax")).is_some()
-// )]
+#[post(opts.cpus.is_some() ==> ret.arguments.contains(&"taskset".into()))]
+#[post(opts.cpus.or(opts.cpu_speed).is_some()
+	==> ret.arguments.iter().find(|e| e.starts_with("CPUQuota")).is_some()
+)]
+#[post(opts.memory.is_some()
+	==> ret.arguments.iter().find(|e| e.starts_with("MemoryMax")).is_some()
+)]
 pub fn build_command(
 	num_cpus: u8,
 	opts: Options,
